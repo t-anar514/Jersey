@@ -85,37 +85,7 @@ const ShopDetails = () => {
             <Filter />
           </div>
           <div className="shopDetails__right">
-            <div className="shopDetailsSorting">
-              <div className="shopDetailsBreadcrumbLink">
-                <Link to="/" onClick={scrollToTop}>
-                  Home
-                </Link>
-                &nbsp;/&nbsp;
-                <Link to="/shop">The Shop</Link>
-              </div>
-              <div className="filterLeft" onClick={toggleDrawer}>
-                <IoFilterSharp />
-                <p>Filter</p>
-              </div>
-              <div className="shopDetailsSort">
-                <select name="sort" id="sort">
-                  <option value="default">Default Sorting</option>
-                  <option value="Featured">Featured</option>
-                  <option value="bestSelling">Best Selling</option>
-                  <option value="a-z">Alphabetically, A-Z</option>
-                  <option value="z-a">Alphabetically, Z-A</option>
-                  <option value="lowToHigh">Price, Low to high</option>
-                  <option value="highToLow">Price, high to low</option>
-                  <option value="oldToNew">Date, old to new</option>
-                  <option value="newToOld">Date, new to old</option>
-                </select>
-                <div className="filterRight" onClick={toggleDrawer}>
-                  <div className="filterSeprator"></div>
-                  <IoFilterSharp />
-                  <p>Filter</p>
-                </div>
-              </div>
-            </div>
+          
             <div className="shopDetailsProducts">
               <div className="shopDetailsProductsContainer">
                 {StoreData.slice(0, 6).map((product) => (
@@ -178,28 +148,7 @@ const ShopDetails = () => {
                 ))}
               </div>
             </div>
-            <div className="shopDetailsPagination">
-              <div className="sdPaginationPrev">
-                <p onClick={scrollToTop}>
-                  <FaAngleLeft />
-                  Prev
-                </p>
-              </div>
-              <div className="sdPaginationNumber">
-                <div className="paginationNum">
-                  <p onClick={scrollToTop}>1</p>
-                  <p onClick={scrollToTop}>2</p>
-                  <p onClick={scrollToTop}>3</p>
-                  <p onClick={scrollToTop}>4</p>
-                </div>
-              </div>
-              <div className="sdPaginationNext">
-                <p onClick={scrollToTop}>
-                  Next
-                  <FaAngleRight />
-                </p>
-              </div>
-            </div>
+      
           </div>
         </div>
       </div>

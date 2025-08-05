@@ -5,6 +5,7 @@ import { OrbitControls } from "@react-three/drei";
 import "./HeroSection.css";
 import { Model } from "../../Model/Model";
 import { Link } from "react-router-dom";
+import { translations } from "../../../translations/Mongolian";
 
 const HeroSection = () => {
   const [tshirtColor, setTshirtColor] = useState("red");
@@ -24,13 +25,30 @@ const HeroSection = () => {
     <>
       <div className="heroMain">
         <div className="sectionleft">
-          <p>New Trend</p>
-          <h1>Summer Sale Stylish</h1>
-          <span>Limited Time Offer - Up to 60% off & Free Shipping</span>
-          <div className="heroLink">
-            <Link to="/shop" onClick={scrollToTop}>
-              <h5>Discover More</h5>
+          <div className="hero-badge">JERSEY.MN</div>
+          <h1>{translations.heroMainText} <span>Jersey.mn </span> {translations.heroMainEnd}</h1>
+          <p className="hero-description">{translations.heroDescription}</p>
+          
+          <div className="hero-buttons">
+         
+            <Link to="/shop" className="secondary-button" onClick={scrollToTop}>
+              {translations.shopJerseys}
             </Link>
+          </div>
+          
+          <div className="hero-features">
+            <div className="hero-feature">
+              <div className="feature-icon">✓</div>
+              <span>{translations.customizableText}</span>
+            </div>
+            <div className="hero-feature">
+              <div className="feature-icon">✓</div>
+              <span>{translations.highQualityMaterials}</span>
+            </div>
+            <div className="hero-feature">
+              <div className="feature-icon">✓</div>
+              <span>{translations.fastProduction}</span>
+            </div>
           </div>
         </div>
         <div className="sectionright">
@@ -58,21 +76,30 @@ const HeroSection = () => {
           </Canvas>
           <div className="heroColorBtn">
             <button
-              onClick={() => changeColor("#353933")}
-              style={{ backgroundColor: "#353933" }}
+              onClick={() => changeColor("#C8393D")}
+              style={{ backgroundColor: "#C8393D" }}
+              className={tshirtColor === "#C8393D" ? "active" : ""}
             ></button>
             <button
-              onClick={() => changeColor("#EFBD4E")}
-              style={{ backgroundColor: "#EFBD4E" }}
+              onClick={() => changeColor("#222222")}
+              style={{ backgroundColor: "#222222" }}
+              className={tshirtColor === "#222222" ? "active" : ""}
             ></button>
             <button
-              onClick={() => changeColor("#726DE7")}
-              style={{ backgroundColor: "#726DE7" }}
+              onClick={() => changeColor("#1C4C96")}
+              style={{ backgroundColor: "#1C4C96" }}
+              className={tshirtColor === "#1C4C96" ? "active" : ""}
             ></button>
             <button
-              onClick={() => changeColor("red")}
-              style={{ backgroundColor: "red" }}
+              onClick={() => changeColor("#E4E4E4")}
+              style={{ backgroundColor: "#E4E4E4" }}
+              className={tshirtColor === "#E4E4E4" ? "active" : ""}
             ></button>
+          </div>
+          <div className="hero-customize-now">
+            <Link to="/customize" onClick={scrollToTop}>
+              {translations.customizeThisJersey} →
+            </Link>
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@ import React from "react";
 import "./Banner.css";
 
 import { Link } from "react-router-dom";
+import { translations } from "../../../translations/Mongolian";
 
 const Banner = () => {
   const scrollToTop = () => {
@@ -15,24 +16,24 @@ const Banner = () => {
     <>
       <div className="banner">
         <div className="bannerLeft">
-          <h6 className="bannerh6">Starting At $19</h6>
-          <h3 className="bannerh3">Women's T-shirts</h3>
+          <h6 className="bannerh6">{translations.startingAt} $19</h6>
+          <h3 className="bannerh3" style={{ color: '#0066cc' }}>{translations.womenTshirts}</h3>
           <h5 className="bannerh5">
             <Link to="/shop" onClick={scrollToTop} style={{ color: "white" }}>
-              Shop Now
+              {translations.shopNow}
             </Link>
           </h5>
         </div>
         <div className="bannerRight">
           <h6 className="bannerh6" style={{ color: "black" }}>
-            Starting At $39
+            {translations.startingAt} $39
           </h6>
-          <h3 className="bannerh3" style={{ color: "black" }}>
-            Men's Sportswear
+          <h3 className="bannerh3" style={{ color: '#0066cc' }}>
+            {translations.mensSportswear}
           </h3>
           <h5 className="bannerh5">
             <Link to="/shop" onClick={scrollToTop} style={{ color: "black" }}>
-              Shop Now
+              {translations.shopNow}
             </Link>
           </h5>
         </div>

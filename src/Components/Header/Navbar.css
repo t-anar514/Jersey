@@ -62,6 +62,76 @@
   transition-delay: 0.1s;
 }
 
+/* Jersey specific navigation styles */
+.linkContainer ul li {
+  position: relative;
+}
+
+.linkContainer ul li .customize-nav-link {
+  background-color: #C8393D;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.linkContainer ul li .customize-nav-link:hover {
+  background-color: #a82e31;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(200, 57, 61, 0.25);
+}
+
+.linkContainer ul li .customize-nav-link::after {
+  display: none;
+}
+
+.linkContainer ul li .submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  min-width: 230px;
+  padding: 15px 0;
+  border-radius: 4px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+
+.linkContainer ul li:hover .submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.linkContainer ul li .submenu ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0;
+}
+
+.linkContainer ul li .submenu ul li {
+  padding: 8px 20px;
+  transition: background 0.2s ease;
+}
+
+.linkContainer ul li .submenu ul li:hover {
+  background-color: #f9f9f9;
+}
+
+.linkContainer ul li .submenu ul li a {
+  display: block;
+  width: 100%;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+/* Removed design-jersey-button styles as they're now applied to customize-nav-link */
+
 .iconContainer {
   display: flex;
   align-items: center;
@@ -173,6 +243,26 @@
   color: #1b1b1b;
   font-size: 16px;
   font-weight: 600;
+  display: block;
+  width: 100%;
+}
+
+.mobile-menuList ul li.mobile-customize-button {
+  padding: 5px 20px;
+}
+
+.mobile-menuList ul li.mobile-customize-button a {
+  background-color: #C8393D;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  text-align: center;
+  font-weight: 600;
+}
+
+.mobile-menuList ul li.mobile-customize-button a:hover {
+  background-color: #a82e31;
 }
 
 .mobile-menuFooter {

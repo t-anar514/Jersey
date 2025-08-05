@@ -1,167 +1,147 @@
 import React, { useState } from "react";
 import "./Filter.css";
 
+import { IoIosArrowDown } from "react-icons/io";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
-import { IoIosArrowDown } from "react-icons/io";
 import { BiSearch } from "react-icons/bi";
-import Slider from "@mui/material/Slider";
 
 const Filter = () => {
-  const [value, setValue] = useState([20, 69]);
+  const filterColors = ["#222222", "#C8393D", "#E4E4E4"];
+  
+  // Product categories in Mongolian
+  const filterCategories = ["Жерси", "Куртик", "Оймс", "Цамц", "Спорт хослол"];
+  
+  // Sizes
+  const filterSizes = ["XXS", "XS", "S", "M", "L", "XL", "XXL", "3XL"];
+  
+  // Gender options in Mongolian
+  const genderOptions = ["Эрэгтэй", "Эмэгтэй", "Хүүхэд", "Юнисекс"];
 
   const [selectedColors, setSelectedColors] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedSizes, setSelectedSizes] = useState([]);
+  const [selectedGenders, setSelectedGenders] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [brandsData] = useState([
-    { name: "Adidas", count: 2 },
-    { name: "Balmain", count: 7 },
-    { name: "Balenciaga", count: 10 },
-    { name: "Burberry", count: 39 },
-    { name: "Kenzo", count: 95 },
-    { name: "Givenchy", count: 1092 },
-    { name: "Zara", count: 48 },
+  
+  // Sport categories in Mongolian
+  const [sportsData] = useState([
+    { name: "Сагсан бөмбөг", count: 42 },
+    { name: "Волейбол", count: 27 },
+    { name: "Хөл бөмбөг", count: 30 },
+    { name: "Гүйлт", count: 19 },
+    { name: "Е-Спорт", count: 15 },
   ]);
 
   const handleColorChange = (color) => {
-    setSelectedColors((prevColors) =>
-      prevColors.includes(color)
-        ? prevColors.filter((c) => c !== color)
-        : [...prevColors, color]
-    );
+    if (selectedColors.includes(color)) {
+      setSelectedColors(selectedColors.filter((c) => c !== color));
+    } else {
+      setSelectedColors([...selectedColors, color]);
+    }
   };
 
   const handleSizeChange = (size) => {
-    setSelectedSizes((prevSizes) =>
-      prevSizes.includes(size)
-        ? prevSizes.filter((s) => s !== size)
-        : [...prevSizes, size]
-    );
+    if (selectedSizes.includes(size)) {
+      setSelectedSizes(selectedSizes.filter((s) => s !== size));
+    } else {
+      setSelectedSizes([...selectedSizes, size]);
+    }
+  };
+  
+  const handleGenderChange = (gender) => {
+    if (selectedGenders.includes(gender)) {
+      setSelectedGenders(selectedGenders.filter((g) => g !== gender));
+    } else {
+      setSelectedGenders([...selectedGenders, gender]);
+    }
+  };
+  
+  const handleCategoryChange = (category) => {
+    if (selectedCategories.includes(category)) {
+      setSelectedCategories(selectedCategories.filter((c) => c !== category));
+    } else {
+      setSelectedCategories([...selectedCategories, category]);
+    }
   };
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
-  const filteredBrands = brandsData.filter((brand) =>
-    brand.name.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredSports = sportsData.filter((sport) =>
+    sport.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
-  const filterCategories = [
-    "Dresses",
-    "Shorts",
-    "Sweatshirts",
-    "Swimwear",
-    "Jackets",
-    "T-Shirts & Tops",
-    "Jeans",
-    "Trousers",
-    "Men",
-    "Jumpers & Cardigans",
-  ];
-
-  const filterColors = [
-    "#0B2472",
-    "#D6BB4F",
-    "#282828",
-    "#B0D6E8",
-    "#9C7539",
-    "#D29B47",
-    "#E5AE95",
-    "#D76B67",
-    "#BABABA",
-    "#BFDCC4",
-  ];
-
-  const filterSizes = ["XS", "S", "M", "L", "XL", "XXL"];
 
   return (
     <div>
       <div className="filterSection">
-        <div className="filterCategories">
+        {/* Gender Filter */}
+        <div className="filterGender">
           <Accordion defaultExpanded disableGutters elevation={0}>
             <AccordionSummary
               expandIcon={<IoIosArrowDown size={20} />}
-              aria-controls="panel1-content"
-              id="panel1-header"
+              aria-controls="panel-gender-content"
+              id="panel-gender-header"
               sx={{ padding: 0, marginBottom: 2 }}
             >
-              <h5 className="filterHeading">Product Categories</h5>
+              <h5 className="filterHeading">Хүйс</h5>
             </AccordionSummary>
             <AccordionDetails sx={{ padding: 0 }}>
-              {filterCategories.map((category, index) => (
-                <p key={index}>{category}</p>
-              ))}
-            </AccordionDetails>
-          </Accordion>
-        </div>
-        <div className="filterColors">
-          <Accordion defaultExpanded disableGutters elevation={0}>
-            <AccordionSummary
-              expandIcon={<IoIosArrowDown size={20} />}
-              aria-controls="panel1-content"
-              id="panel1-header"
-              sx={{ padding: 0, marginBottom: 2 }}
-            >
-              <h5 className="filterHeading">Color</h5>
-            </AccordionSummary>
-            <AccordionDetails sx={{ padding: 0 }}>
-              {
-                <div className="filterColorBtn">
-                  {filterColors.map((color, index) => (
-                    <button
-                      key={index}
-                      className={`colorButton ${
-                        selectedColors.includes(color) ? "selected" : ""
-                      }`}
-                      style={{
-                        backgroundColor: color,
-                      }}
-                      onClick={() => handleColorChange(color)}
+              <div className="genderOptions">
+                {genderOptions.map((gender, index) => (
+                  <div className="genderOption" key={index}>
+                    <input 
+                      type="checkbox" 
+                      id={`gender-${index}`} 
+                      checked={selectedGenders.includes(gender)}
+                      onChange={() => handleGenderChange(gender)}
                     />
-                  ))}
-                </div>
-              }
-            </AccordionDetails>
-          </Accordion>
-        </div>
-        <div className="filterSizes">
-          <Accordion defaultExpanded disableGutters elevation={0}>
-            <AccordionSummary
-              expandIcon={<IoIosArrowDown size={20} />}
-              aria-controls="panel1-content"
-              id="panel1-header"
-              sx={{ padding: 0, marginBottom: 2 }}
-            >
-              <h5 className="filterHeading">Sizes</h5>
-            </AccordionSummary>
-            <AccordionDetails sx={{ padding: 0 }}>
-              <div className="sizeButtons">
-                {filterSizes.map((size, index) => (
-                  <button
-                    key={index}
-                    className={`sizeButton ${
-                      selectedSizes.includes(size) ? "selected" : ""
-                    }`}
-                    onClick={() => handleSizeChange(size)}
-                  >
-                    {size}
-                  </button>
+                    <label htmlFor={`gender-${index}`}>{gender}</label>
+                  </div>
                 ))}
               </div>
             </AccordionDetails>
           </Accordion>
         </div>
-        <div className="filterBrands">
+        
+        {/* Product Categories */}
+        <div className="filterProductCategories">
           <Accordion defaultExpanded disableGutters elevation={0}>
             <AccordionSummary
               expandIcon={<IoIosArrowDown size={20} />}
-              aria-controls="panel1-content"
-              id="panel1-header"
+              aria-controls="panel-categories-content"
+              id="panel-categories-header"
               sx={{ padding: 0, marginBottom: 2 }}
             >
-              <h5 className="filterHeading">Brands</h5>
+              <h5 className="filterHeading">Бүтээгдэхүүний төрөл</h5>
+            </AccordionSummary>
+            <AccordionDetails sx={{ padding: 0 }}>
+              <div className="categoriesList">
+                {filterCategories.map((category, index) => (
+                  <div className="categoryOption" key={index}>
+                    <input 
+                      type="checkbox" 
+                      id={`category-${index}`}
+                      checked={selectedCategories.includes(category)}
+                      onChange={() => handleCategoryChange(category)}
+                    />
+                    <label htmlFor={`category-${index}`}>{category}</label>
+                  </div>
+                ))}
+              </div>
+            </AccordionDetails>
+          </Accordion>
+        </div>
+
+      
+        {/* Sports Categories */}
+        <div className="filterSports">
+          <Accordion defaultExpanded disableGutters elevation={0}>
+            <AccordionSummary
+              expandIcon={<IoIosArrowDown size={20} />}
+              aria-controls="panel-sports-content"
+              id="panel-sports-header"
+              sx={{ padding: 0, marginBottom: 2 }}
+            >
+              <h5 className="filterHeading">Спортын төрөл</h5>
             </AccordionSummary>
             <AccordionDetails sx={{ padding: 0 }}>
               {/* Search bar */}
@@ -169,80 +149,33 @@ const Filter = () => {
                 <BiSearch className="searchIcon" size={20} color={"#767676"} />
                 <input
                   type="text"
-                  placeholder="Search"
+                  placeholder="Хайх"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </div>
 
-              {/* Brand list */}
+              {/* Sport list */}
               <div className="brandList">
-                {filteredBrands.length > 0 ? (
-                  filteredBrands.map((brand, index) => (
-                    <div className="brandItem" key={index}>
-                      {/* Radio button */}
-                      <input
-                        type="checkbox"
-                        name="brand"
-                        id={`brand-${index}`}
-                        className="brandRadio"
-                      />
-                      {/* Brand name */}
-                      <label htmlFor={`brand-${index}`} className="brandLabel">
-                        {brand.name}
-                      </label>
-                      {/* Brand count */}
-                      <span className="brandCount">{brand.count}</span>
-                    </div>
-                  ))
-                ) : (
-                  <div className="notFoundMessage">Not found</div>
-                )}
+                {filteredSports.map((sport, index) => (
+                  <div className="brandItem" key={index}>
+                    <input
+                      type="checkbox"
+                      name="sport"
+                      id={`sport-${index}`}
+                      className="brandRadio"
+                    />
+                    <label htmlFor={`sport-${index}`} className="brandLabel">
+                      {sport.name}
+                    </label>
+                    <span className="brandCount">{sport.count}</span>
+                  </div>
+                ))}
               </div>
             </AccordionDetails>
           </Accordion>
         </div>
-        <div className="filterPrice">
-          <Accordion defaultExpanded disableGutters elevation={0}>
-            <AccordionSummary
-              expandIcon={<IoIosArrowDown size={20} />}
-              aria-controls="panel1-content"
-              id="panel1-header"
-              sx={{ padding: 0, marginBottom: 2 }}
-            >
-              <h5 className="filterHeading">Price</h5>
-            </AccordionSummary>
-            <AccordionDetails sx={{ padding: 0 }}>
-              <Slider
-                getAriaLabel={() => "Temperature range"}
-                value={value}
-                onChange={handleChange}
-                valueLabelDisplay="auto"
-                valueLabelFormat={(value) => `$${value}`}
-                sx={{
-                  color: "black",
-                  "& .MuiSlider-thumb": {
-                    backgroundColor: "white",
-                    border: "2px solid black",
-                    width: 18,
-                    height: 18,
-                  },
-                }}
-              />
-
-              <div className="filterSliderPrice">
-                <div className="priceRange">
-                  <p>
-                    Min Price: <span>${value[0]}</span>
-                  </p>
-                  <p>
-                    Max Price: <span>${value[1]}</span>
-                  </p>
-                </div>
-              </div>
-            </AccordionDetails>
-          </Accordion>
-        </div>
+        
       </div>
     </div>
   );

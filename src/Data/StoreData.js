@@ -1,14 +1,14 @@
-import Product_1 from "../Assets/Products/product_1.jpg";
+import Product_1 from "../Assets/Products/product_1.jpeg";
 import Product_1_1 from "../Assets/Products/product_1-1.jpg";
-import Product_2 from "../Assets/Products/product_2.jpg";
+import Product_2 from "../Assets/Products/product_2.jpeg";
 import Product_2_1 from "../Assets/Products/product_2-1.jpg";
-import Product_3 from "../Assets/Products/product_3.jpg";
+import Product_3 from "../Assets/Products/product_3.jpeg";
 import Product_3_1 from "../Assets/Products/product_3-1.jpg";
-import Product_4 from "../Assets/Products/product_4.jpg";
+import Product_4 from "../Assets/Products/product_4.jpeg";
 import Product_4_1 from "../Assets/Products/product_4-1.jpg";
-import Product_5 from "../Assets/Products/product_5.jpg";
+import Product_5 from "../Assets/Products/product_5.jpeg";
 import Product_5_1 from "../Assets/Products/product_5-1.jpg";
-import Product_6 from "../Assets/Products/product_6.jpg";
+import Product_6 from "../Assets/Products/product_1.jpeg";
 import Product_6_1 from "../Assets/Products/product_6-1.jpg";
 import Product_7 from "../Assets/Products/product_7.jpg";
 import Product_7_1 from "../Assets/Products/product_7-1.jpg";
@@ -26,7 +26,7 @@ let StoreData = [
     productID: 1,
     frontImg: Product_1,
     backImg: Product_1_1,
-    productName: "Cropped Faux Leather Jacket",
+    productName: "Crunchtime men's basketball jersey",
     productPrice: 29,
     productReviews: "8k+ reviews",
   },
@@ -34,7 +34,7 @@ let StoreData = [
     productID: 2,
     frontImg: Product_2,
     backImg: Product_2_1,
-    productName: "Calvin Shorts",
+    productName: "Swish men's basketball jersey",
     productPrice: 62,
     productReviews: "2k+ reviews",
   },
@@ -42,7 +42,7 @@ let StoreData = [
     productID: 3,
     frontImg: Product_3,
     backImg: Product_3_1,
-    productName: "Shirt In Botanical Cheetah Print",
+    productName: "Shooter men's basketball shirt",
     productPrice: 60,
     productReviews: "7k+ reviews",
   },
@@ -50,7 +50,7 @@ let StoreData = [
     productID: 4,
     frontImg: Product_4,
     backImg: Product_4_1,
-    productName: "Cotton Jersey T-Shirt",
+    productName: "Crunchtime men's basketball jersey",
     productPrice: 17,
     productReviews: "5k+ reviews",
   },
@@ -58,7 +58,7 @@ let StoreData = [
     productID: 5,
     frontImg: Product_5,
     backImg: Product_5_1,
-    productName: "Cableknit Shawl",
+    productName: "Basketball jersey",
     productPrice: 100,
     productReviews: "9k+ reviews",
   },
@@ -66,7 +66,7 @@ let StoreData = [
     productID: 6,
     frontImg: Product_6,
     backImg: Product_6_1,
-    productName: "Colorful Jacket",
+    productName: "Basketball jersey",
     productPrice: 69,
     productReviews: "1k+ reviews",
   },

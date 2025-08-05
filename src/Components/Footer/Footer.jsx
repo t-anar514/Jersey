@@ -1,14 +1,15 @@
 import React from "react";
 import "./Footer.css";
 import logo from "../../Assets/logo.png";
-import paymentIcon from "../../Assets/paymentIcon.png";
-import { FaFacebookF } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
+import paymentIcon from "../../Assets/qpayIcon.png";
+import { FaFacebook } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { FaPinterest } from "react-icons/fa";
 
 import { Link } from "react-router-dom";
+import { translations } from "../../translations/Mongolian";
 
 const Footer = () => {
   const handleSubscribe = (e) => {
@@ -34,16 +35,16 @@ const Footer = () => {
               <img src={logo} alt="" Z />
             </div>
 
-            <p>1418 River Drive, Suite 35 Cottonhall, CA 9622 United States</p>
+            <p>WV7H+FJH, Улаанбаатар Бгд 1-р хороо төмөр зам богд арын хаан банкны замын эсрэг талд, Ulaanbaatar</p>
 
             <div className="footer_address">
-              <strong> sale@uomo.com </strong>
-              <strong> +1 246-345-0695 </strong>
+              <strong> jolooch103@gmail.com </strong>
+              <strong> +976 99119511 </strong>
             </div>
 
             <div className="social_links">
-              <FaFacebookF />
-              <FaXTwitter />
+              <FaFacebook />
+              <FaTwitter />
               <FaInstagram />
               <FaYoutube />
               <FaPinterest />
@@ -51,87 +52,64 @@ const Footer = () => {
           </div>
 
           <div className="footer_content">
-            <h5>Company</h5>
+            <h5>Манай баг</h5>
             <div className="links_container">
               <ul onClick={scrollToTop}>
                 <li>
-                  <Link to="/about">About Us</Link>
+                  <Link to="/about">{translations.about}</Link>
+                </li>
+             
+                <li>
+                  <Link to="/blog">{translations.blog}</Link>
                 </li>
                 <li>
-                  <Link to="/about">Career</Link>
-                </li>
-                <li>
-                  <Link to="*">Affilates</Link>
-                </li>
-                <li>
-                  <Link to="/blog">Blog</Link>
-                </li>
-                <li>
-                  <Link to="/contact">Contact Us</Link>
+                  <Link to="/contact">{translations.contact}</Link>
                 </li>
               </ul>
             </div>
           </div>
           <div className="footer_content">
-            <h5>Shop</h5>
+            <h5>Дэлгүүр</h5>
             <div className="links_container">
               <ul onClick={scrollToTop}>
+              
+              
                 <li>
-                  <Link to="/shop">New Arrivals</Link>
+                  <Link to="/shop">{translations.men}</Link>
                 </li>
                 <li>
-                  <Link to="/shop">Accessories</Link>
+                  <Link to="/shop">{translations.women}</Link>
                 </li>
                 <li>
-                  <Link to="/shop">Men</Link>
-                </li>
-                <li>
-                  <Link to="/shop">Women</Link>
-                </li>
-                <li>
-                  <Link to="/shop">Shop All</Link>
+                  <Link to="/shop">{translations.shopAll}</Link>
                 </li>
               </ul>
             </div>
           </div>
           <div className="footer_content">
-            <h5>Help</h5>
+            <h5>Тусламж</h5>
             <div className="links_container">
               <ul onClick={scrollToTop}>
+               
                 <li>
-                  <Link to="/contact">Customer Service</Link>
+                  <Link to="/loginSignUp">{translations.myAccount}</Link>
+                </li>
+             
+                <li>
+                  <Link to="/terms">{translations.legalAndPrivacy}</Link>
                 </li>
                 <li>
-                  <Link to="/loginSignUp">My Account</Link>
+                  <Link to="/contact">{translations.contact}</Link>
                 </li>
-                <li>
-                  <Link to="/contact">Find a Store</Link>
-                </li>
-                <li>
-                  <Link to="/terms">Legal & Privacy</Link>
-                </li>
-                <li>
-                  <Link to="/contact">Contact</Link>
-                </li>
-                <li>
-                  <Link to="/">Gift Card</Link>
-                </li>
+               
               </ul>
             </div>
           </div>
           <div className="footer_right">
-            <h5>Subscribe</h5>
-            <p>
-              Be the first to get the latest news about trends, promotions, and
-              much more!
-            </p>
+            <h5>{translations.subscribe}</h5>
+           
 
-            <form onSubmit={handleSubscribe}>
-              <input type="email" placeholder="Your email address" required />
-              <button type="submit">Join</button>
-            </form>
-
-            <h6>Secure Payments</h6>
+            <h6>{translations.securePayments}</h6>
             <div className="paymentIconContainer">
               <img src={paymentIcon} alt="" />
             </div>
@@ -139,37 +117,17 @@ const Footer = () => {
         </div>
         <div className="footer_bottom">
           <p>
-            © {getCurrentYear()} Uomo. All Rights Reserved | Made By{" "}
+            {translations.copyright} {getCurrentYear()} Uomo. {translations.allRightsReserved} | Made By{" "}
             <a
-              href="https://github.com/shakti177"
+              href="https://anar.vercel.app/"
               target="_blank"
               rel="noreferrer"
               style={{ color: "#C22928", textDecoration: "none" }}
             >
-              Shakti Tamrakar
-            </a>{" "}
-            with ❤️
+              Anar Tamir
+            </a>
           </p>
-          <div className="footerLangCurrency">
-            <div className="footerLang">
-              <p>Language</p>
-              <select name="language" id="language">
-                <option value="english">United States | English</option>
-                <option value="Hindi">Hindi</option>
-                <option value="Germany">Germany</option>
-                <option value="French">French</option>
-              </select>
-            </div>
-            <div className="footerCurrency">
-              <p>Currency</p>
-              <select name="currency" id="currency">
-                <option value="USD">$ USD</option>
-                <option value="INR">₹ INR</option>
-                <option value="EUR">€ EUR</option>
-                <option value="GBP">£ GBP</option>
-              </select>
-            </div>
-          </div>
+          
         </div>
       </footer>
     </>

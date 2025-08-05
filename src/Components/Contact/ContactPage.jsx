@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { translations } from "../../translations/Mongolian";
 import "./ContactPage.css";
 
 const ContactPage = () => {
@@ -9,7 +10,7 @@ const ContactPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     alert(
-      `Thank You ${name} for Contacting Us. We will Get Back to You Soon.\n\nYour Mail Id - ${email}.\nYour Message is - ${message}`
+      `${name} таныг бидэнд холбогдохтой баярлалаа. Бид танд хамгийн сүүлд хариулах болно.\n\nТаны И-мэйл: ${email}.\nТаны үгс: ${message}`
     );
     setname("");
     setEmail("");
@@ -19,22 +20,24 @@ const ContactPage = () => {
   return (
     <>
       <div className="contactSection">
-        <h2>Contact Us</h2>
+        <h2>{translations.contactUs}</h2>
         <div className="contactMap">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d49206.16593395236!2d2.5776979486328124!3d39.57346430000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x129793280de39c05%3A0x85d5f5ea839d6c2a!2sUOMO!5e0!3m2!1sen!2sin!4v1708798894132!5m2!1sen!2sin"
-            width="800"
-            height="600"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title="uomomap"
-          ></iframe>
-        </div>
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d940.184357826445!2d106.88312678043765!3d47.91119037397526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5d9693f9c13f404d%3A0x853c8dfc8c0cad06!2sKACC.MN%20Kassiin%20mashinii%20hudaldaa!5e1!3m2!1sen!2smn!4v1751004878641!5m2!1sen!2smn"
+    width="800"
+    height="600"
+    style={{ border: 0 }}
+    allowFullScreen=""
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+    title="kaccmap"
+  ></iframe>
+</div>
+
         <div className="contactInfo">
           <div className="contactAddress">
             <div className="address">
-              <h3>Store in London</h3>
+              <h3>London дэх дүк</h3>
               <p>
                 1418 River Drive, Suite 35 Cottonhall, CA 9622
                 <br /> United Kingdom
@@ -58,33 +61,7 @@ const ContactPage = () => {
               </p>
             </div>
           </div>
-          <div className="contactForm">
-            <h3>Get In Touch</h3>
-            <form onSubmit={handleSubmit}>
-              <input
-                type="text"
-                value={name}
-                placeholder="Name *"
-                onChange={(e) => setname(e.target.value)}
-                required
-              />
-              <input
-                type="email"
-                value={email}
-                placeholder="Email address *"
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              <textarea
-                rows={10}
-                cols={40}
-                placeholder="Your Message"
-                value={message}
-                onChange={(e) => setmessage(e.target.value)}
-              />
-              <button type="submit">Submit</button>
-            </form>
-          </div>
+         
         </div>
       </div>
     </>

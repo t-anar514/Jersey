@@ -22,47 +22,39 @@
   cursor: pointer;
   text-decoration: none;
   text-transform: uppercase;
-  font-size: 16px;
   font-weight: 600;
   position: relative;
-  transition: color 0.3s;
-  color: #767676;
-  text-decoration: none;
+  padding: 12px 0;
+  transition: color 0.3s ease;
+  font-size: 15px;
+  letter-spacing: 0.5px;
 }
 
 .aiTabs p:hover {
-  color: black;
+  color: #555;
 }
 
-.aiTabs p.aiActive {
-  color: black;
+.aiTabs p.active {
+  color: #000;
 }
 
-.aiTabs p.aiActive::after {
+.aiTabs p.active::after {
   content: "";
   position: absolute;
-  bottom: -5px;
   left: 0;
+  bottom: -16px;
   width: 100%;
-  height: 2px;
-  background-color: rgb(0, 0, 0);
+  border-bottom: 2px solid black;
+  animation: slideIn 0.3s ease-out forwards;
 }
 
-.aiTabs p:not(.aiActive)::after {
-  content: "";
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: rgb(0, 0, 0);
-  transition: width 0.2s ease, left 0.2s ease;
-}
-
-.aiTabs p:not(.aiActive):hover::after {
-  width: 100%;
-  left: 0;
-  transition-delay: 0.2s;
+@keyframes slideIn {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
 }
 
 /* Tab1 */
@@ -150,13 +142,28 @@
 
 .userReview {
   display: flex;
-  gap: 40px;
+  gap: 25px;
+  margin-bottom: 35px;
+  padding-bottom: 20px;
+  transition: transform 0.3s ease;
+}
+
+.userReview:hover {
+  transform: translateY(-5px);
 }
 
 .userReviewImg img {
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #f5f5f5;
+  transition: all 0.3s ease;
+}
+
+.userReview:hover .userReviewImg img {
+  border-color: #e0e0e0;
+  transform: scale(1.05);
 }
 
 .userReviewContent {
@@ -179,12 +186,24 @@
 
 .userNameRating h6 {
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 5px;
+  transition: color 0.3s ease;
+}
+
+.userReview:hover .userNameRating h6 {
+  color: #000;
 }
 
 .userRating {
   display: flex;
   gap: 3px;
+  transition: transform 0.3s ease;
+}
+
+.userReview:hover .userRating {
+  transform: scale(1.1);
 }
 
 .userDate p {
@@ -206,10 +225,26 @@
   gap: 40px;
 }
 
+.userNewReviewForm {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  background-color: #f9f9f9;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.userNewReviewForm:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
 .userNewReviewMessage {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 12px;
 }
 
 .userNewReviewMessage h5 {
@@ -238,6 +273,43 @@
   gap: 20px;
 }
 
+.userNewReviewFormInputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.userNewReviewFormInputs input {
+  padding: 12px 15px;
+  border: 1px solid #e0e0e0;
+  outline: none;
+  border-radius: 4px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  font-size: 14px;
+}
+
+.userNewReviewFormInputs input:focus {
+  border-color: #000;
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+}
+
+.userNewReviewFormInputs textarea {
+  grid-column: span 2;
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  outline: none;
+  resize: none;
+  height: 150px;
+  border-radius: 4px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  font-size: 14px;
+}
+
+.userNewReviewFormInputs textarea:focus {
+  border-color: #000;
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+}
+
 .userNewReviewForm form textarea {
   padding: 10px;
   border: 0.125rem solid #e4e4e4;
@@ -262,6 +334,36 @@
   border: none;
   cursor: pointer;
   text-transform: uppercase;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.userNewReviewForm button:hover {
+  background-color: #333;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.userNewReviewForm button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.userNewReviewForm button::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: -100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: 0.5s;
+}
+
+.userNewReviewForm button:hover::after {
+  left: 100%;
 }
 
 .userNewReviewFormCheck input {

@@ -22,19 +22,19 @@ const AdditionalInfo = () => {
             <div className="aiTabs">
               <p
                 onClick={() => handleTabClick("aiTab1")}
-                className={activeTab === "aiTab1" ? "aiActive" : ""}
+                className={activeTab === "aiTab1" ? "active" : ""}
               >
                 Description
               </p>
               <p
                 onClick={() => handleTabClick("aiTab2")}
-                className={activeTab === "aiTab2" ? "aiActive" : ""}
+                className={activeTab === "aiTab2" ? "active" : ""}
               >
                 Additional Information
               </p>
               <p
                 onClick={() => handleTabClick("aiTab3")}
-                className={activeTab === "aiTab3" ? "aiActive" : ""}
+                className={activeTab === "aiTab3" ? "active" : ""}
               >
                 Reviews (2)
               </p>

@@ -17,8 +17,11 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { FaPinterest } from "react-icons/fa";
+import { FaCartFlatbedSuitcase } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 
 import Badge from "@mui/material/Badge";
+import { translations } from "../../translations/Mongolian";
 
 const Navbar = () => {
   const cart = useSelector((state) => state.cart);
@@ -51,27 +54,57 @@ const Navbar = () => {
             <ul>
               <li>
                 <Link to="/" onClick={scrollToTop}>
-                  HOME
+                  {translations.home}
                 </Link>
               </li>
+              
               <li>
                 <Link to="/shop" onClick={scrollToTop}>
-                  SHOP
+                  {translations.jerseyShop}
                 </Link>
+                <div className="submenu">
+                  <ul>
+                    <li>
+                      <Link to="/shop?category=basketball">
+                        {translations.basketballJerseys}
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/shop?category=football">
+                        {translations.footballJerseys}
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/shop?category=volleyball">
+                        {translations.volleyballJerseys}
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/shop?category=esports">
+                        {translations.esportsJerseys}
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/shop?category=custom">
+                        {translations.customJerseys}
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
               </li>
               <li>
-                <Link to="/blog" onClick={scrollToTop}>
-                  BLOG
+                <Link to="/teams" onClick={scrollToTop}>
+                  {translations.teams}
                 </Link>
               </li>
               <li>
                 <Link to="/about" onClick={scrollToTop}>
-                  ABOUT
+                  {translations.about}
                 </Link>
               </li>
               <li>
                 <Link to="/contact" onClick={scrollToTop}>
-                  CONTACT
+                  {translations.contact}
                 </Link>
               </li>
             </ul>
@@ -129,7 +162,7 @@ const Navbar = () => {
           <div className="mobile-menuTop">
             <div className="mobile-menuSearchBar">
               <div className="mobile-menuSearchBarContainer">
-                <input type="text" placeholder="Search products" />
+                <input type="text" placeholder="Бүтээгдэхүүн хайх" />
                 <Link to="/shop">
                   <FiSearch size={22} onClick={toggleMobileMenu} />
                 </Link>
@@ -139,27 +172,38 @@ const Navbar = () => {
               <ul>
                 <li>
                   <Link to="/" onClick={toggleMobileMenu}>
-                    HOME
+                    {translations.home}
                   </Link>
                 </li>
+              
                 <li>
                   <Link to="/shop" onClick={toggleMobileMenu}>
-                    SHOP
+                    {translations.jerseyShop}
                   </Link>
                 </li>
                 <li>
-                  <Link to="/blog" onClick={toggleMobileMenu}>
-                    BLOG
+                  <Link to="/shop?category=basketball" onClick={toggleMobileMenu}>
+                    {translations.basketballJerseys}
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/shop?category=football" onClick={toggleMobileMenu}>
+                    {translations.footballJerseys}
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/teams" onClick={toggleMobileMenu}>
+                    {translations.teams}
                   </Link>
                 </li>
                 <li>
                   <Link to="/about" onClick={toggleMobileMenu}>
-                    ABOUT
+                    {translations.about}
                   </Link>
                 </li>
                 <li>
                   <Link to="/contact" onClick={toggleMobileMenu}>
-                    CONTACT
+                    {translations.contact}
                   </Link>
                 </li>
               </ul>
@@ -170,26 +214,26 @@ const Navbar = () => {
             <div className="mobile-menuFooterLogin">
               <Link to="/loginSignUp" onClick={toggleMobileMenu}>
                 <FaRegUser />
-                <p>My Account</p>
+                <p>{translations.myAccount}</p>
               </Link>
             </div>
             <div className="mobile-menuFooterLangCurrency">
               <div className="mobile-menuFooterLang">
-                <p>Language</p>
+                <p>{translations.language}</p>
                 <select name="language" id="language">
-                  <option value="english">United States | English</option>
-                  <option value="Hindi">Hindi</option>
-                  <option value="Germany">Germany</option>
-                  <option value="French">French</option>
+                  <option value="english">{translations.english}</option>
+                  <option value="Hindi">{translations.hindi}</option>
+                  <option value="Germany">{translations.german}</option>
+                  <option value="French">{translations.french}</option>
                 </select>
               </div>
               <div className="mobile-menuFooterCurrency">
-                <p>Currency</p>
+                <p>{translations.currency}</p>
                 <select name="currency" id="currency">
-                  <option value="USD">$ USD</option>
-                  <option value="INR">₹ INR</option>
-                  <option value="EUR">€ EUR</option>
-                  <option value="GBP">£ GBP</option>
+                  <option value="USD">{translations.usd}</option>
+                  <option value="INR">{translations.inr}</option>
+                  <option value="EUR">{translations.eur}</option>
+                  <option value="GBP">{translations.gbp}</option>
                 </select>
               </div>
             </div>

@@ -10,8 +10,8 @@ import {
 import { MdOutlineClose } from "react-icons/md";
 
 import { Link } from "react-router-dom";
-
 import success from "../../Assets/success.png";
+import { translations } from "../../translations/Mongolian";
 
 const ShoppingCart = () => {
   const cartItems = useSelector((state) => state.cart.items);
@@ -19,6 +19,13 @@ const ShoppingCart = () => {
 
   const [activeTab, setActiveTab] = useState("cartTab1");
   const [payments, setPayments] = useState(false);
+  const [couponCode, setCouponCode] = useState("");
+  const [selectedPayment, setSelectedPayment] = useState("QPAY");
+  const [shippingOption, setShippingOption] = useState("shipping");
+  const pickupLocation = {
+    name: "Ulaanbaatar Store",
+    address: "Ulaanbaatar, Sukhbaatar District",
+  };
 
   const handleTabClick = (tab) => {
     if (tab === "cartTab1" || cartItems.length > 0) {
@@ -58,18 +65,18 @@ const ShoppingCart = () => {
 
   // Radio Button Data
 
-  const [selectedPayment, setSelectedPayment] = useState(
-    "Direct Bank Transfer"
-  );
-
   const handlePaymentChange = (e) => {
     setSelectedPayment(e.target.value);
+  };
+
+  const handleShippingOptionChange = (e) => {
+    setShippingOption(e.target.value);
   };
 
   return (
     <>
       <div className="shoppingCartSection">
-        <h2>Cart</h2>
+        <h2>{translations.cart}</h2>
 
         <div className="shoppingCartTabsContainer">
           <div className={`shoppingCartTabs ${activeTab}`}>
@@ -83,8 +90,8 @@ const ShoppingCart = () => {
               <div className="shoppingCartTabsNumber">
                 <h3>01</h3>
                 <div className="shoppingCartTabsHeading">
-                  <h3>Shopping Bag</h3>
-                  <p>Manage Your Items List</p>
+                  <h3>{translations.shoppingBag}</h3>
+                  <p>{translations.manageItems}</p>
                 </div>
               </div>
             </button>
@@ -99,8 +106,8 @@ const ShoppingCart = () => {
               <div className="shoppingCartTabsNumber">
                 <h3>02</h3>
                 <div className="shoppingCartTabsHeading">
-                  <h3>Shipping and Checkout</h3>
-                  <p>Checkout Your Items List</p>
+                  <h3>{translations.checkout}</h3>
+                  <p>{translations.reviewOrder}</p>
                 </div>
               </div>
             </button>
@@ -114,8 +121,8 @@ const ShoppingCart = () => {
               <div className="shoppingCartTabsNumber">
                 <h3>03</h3>
                 <div className="shoppingCartTabsHeading">
-                  <h3>Confirmation</h3>
-                  <p>Review And Submit Your Order</p>
+                  <h3>{translations.submitOrder}</h3>
+                  <p>{translations.submitOrder}</p>
                 </div>
               </div>
             </button>
@@ -129,11 +136,11 @@ const ShoppingCart = () => {
                   <table className="shoppingBagTable">
                     <thead>
                       <tr>
-                        <th>Product</th>
+                        <th>{translations.products}</th>
                         <th></th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Subtotal</th>
+                        <th>{translations.price}</th>
+                        <th>{translations.quantity}</th>
+                        <th>{translations.subtotal}</th>
                         <th></th>
                       </tr>
                     </thead>
@@ -221,51 +228,16 @@ const ShoppingCart = () => {
                         <tr>
                           <td colSpan="6">
                             <div className="shoppingCartEmpty">
-                              <span>Your cart is empty!</span>
+                              <span>{translations.emptyCart}</span>
                               <Link to="/shop" onClick={scrollToTop}>
-                                <button>Shop Now</button>
+                                <button>{translations.shopNow}</button>
                               </Link>
                             </div>
                           </td>
                         </tr>
                       )}
                     </tbody>
-                    <tfoot>
-                      <th
-                        colSpan="6"
-                        className="shopCartFooter"
-                        style={{
-                          borderBottom: "none",
-                          padding: "20px 0px",
-                        }}
-                      >
-                        {cartItems.length > 0 && (
-                          <div className="shopCartFooterContainer">
-                            <form>
-                              <input
-                                type="text"
-                                placeholder="Coupon Code"
-                              ></input>
-                              <button
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                }}
-                              >
-                                Apply Coupon
-                              </button>
-                            </form>
-                            <button
-                              onClick={(e) => {
-                                e.preventDefault();
-                              }}
-                              className="shopCartFooterbutton"
-                            >
-                              Update Cart
-                            </button>
-                          </div>
-                        )}
-                      </th>
-                    </tfoot>
+                   
                   </table>
 
                   {/* For Mobile devices */}
@@ -336,31 +308,7 @@ const ShoppingCart = () => {
                             </div>
                           </div>
                         ))}
-                        <div className="shopCartFooter">
-                          <div className="shopCartFooterContainer">
-                            <form>
-                              <input
-                                type="text"
-                                placeholder="Coupon Code"
-                              ></input>
-                              <button
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                }}
-                              >
-                                Apply Coupon
-                              </button>
-                            </form>
-                            <button
-                              onClick={(e) => {
-                                e.preventDefault();
-                              }}
-                              className="shopCartFooterbutton"
-                            >
-                              Update Cart
-                            </button>
-                          </div>
-                        </div>
+                        
                       </>
                     ) : (
                       <div className="shoppingCartEmpty">
@@ -373,42 +321,78 @@ const ShoppingCart = () => {
                   </div>
                 </div>
                 <div className="shoppingBagTotal">
-                  <h3>Cart Totals</h3>
+                  <h3>{translations.cartTotals}</h3>
                   <table className="shoppingBagTotalTable">
                     <tbody>
                       <tr>
-                        <th>Subtotal</th>
+                        <th>{translations.subtotal}</th>
                         <td>${totalPrice.toFixed(2)}</td>
                       </tr>
+                      {shippingOption === "shipping" && (
+                        <tr>
+                          <th>{translations.shipping}</th>
+                          <td>
+                            <div className="shoppingBagTotalTableCheck">
+                              <p>${(totalPrice === 0 ? 0 : 5).toFixed(2)}</p>
+                              
+                              <p
+                                onClick={scrollToTop}
+                                style={{
+                                  cursor: "pointer",
+                                }}
+                              >
+                               Сонголтоор
+                              </p>
+                            </div>
+                          </td>
+                        </tr>
+                      )}
                       <tr>
-                        <th>Shipping</th>
-                        <td>
-                          <div className="shoppingBagTotalTableCheck">
-                            <p>${(totalPrice === 0 ? 0 : 5).toFixed(2)}</p>
-                            <p>Shipping to Al..</p>
-                            <p
-                              onClick={scrollToTop}
-                              style={{
-                                cursor: "pointer",
-                              }}
-                            >
-                              CHANGE ADDRESS
-                            </p>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th>VAT</th>
+                        <th>{translations.vat}</th>
                         <td>${(totalPrice === 0 ? 0 : 11).toFixed(2)}</td>
                       </tr>
                       <tr>
-                        <th>Total</th>
+                        <th>{translations.total}</th>
                         <td>
-                          ${(totalPrice === 0 ? 0 : totalPrice + 16).toFixed(2)}
+                          ${(totalPrice === 0 ? 0 : totalPrice + (shippingOption === "shipping" ? 16 : 11)).toFixed(2)}
                         </td>
                       </tr>
                     </tbody>
                   </table>
+                  <div className="shippingOptions">
+                    <label>
+                      <input 
+                        type="radio" 
+                        name="shippingOption" 
+                        value="shipping" 
+                        checked={shippingOption === "shipping"}
+                        onChange={handleShippingOptionChange}
+                      />
+                      <div>
+                        <span>{translations.shipping}</span>
+                       
+                      </div>
+                    </label>
+                    <label>
+                      <input 
+                        type="radio" 
+                        name="shippingOption" 
+                        value="pickup" 
+                        checked={shippingOption === "pickup"}
+                        onChange={handleShippingOptionChange}
+                      />
+                      <div>
+                        <span>{translations.pickup}</span>
+                        <p>{translations.pickupDescription}</p>
+                      </div>
+                    </label>
+                  </div>
+                  {shippingOption === "pickup" && (
+                    <div className="pickupLocationSelector">
+                      <h4>{translations.pickupLocation}</h4>
+                      <p>{pickupLocation.name} - {pickupLocation.address}</p>
+                    </div>
+                  )}
                   <button
                     onClick={() => {
                       handleTabClick("cartTab2");
@@ -416,7 +400,7 @@ const ShoppingCart = () => {
                     }}
                     disabled={cartItems.length === 0}
                   >
-                    Proceed to Checkout
+                    {translations.proceedToCheckout}
                   </button>
                 </div>
               </div>
@@ -426,47 +410,21 @@ const ShoppingCart = () => {
             {activeTab === "cartTab2" && (
               <div className="checkoutSection">
                 <div className="checkoutDetailsSection">
-                  <h4>Billing Details</h4>
+                  <h4>{translations.billingDetails}</h4>
                   <div className="checkoutDetailsForm">
                     <form>
                       <div className="checkoutDetailsFormRow">
-                        <input type="text" placeholder="First Name" />
-                        <input type="text" placeholder="Last Name" />
+                        <input type="text" placeholder={translations.lastName} />
                       </div>
-                      <input
-                        type="text"
-                        placeholder="Company Name (optional)"
-                      />
-                      <select name="country" id="country">
-                        <option value="Country / Region" selected disabled>
-                          Country / Region
-                        </option>
-                        <option value="India">India</option>
-                        <option value="Canada">Canada</option>
-                        <option value="United Kingdom">United Kingdom</option>
-                        <option value="United States">United States</option>
-                        <option value="Turkey">Turkey</option>
-                      </select>
-                      <input type="text" placeholder="Street Address*" />
-                      <input type="text" placeholder="" />
-                      <input type="text" placeholder="Town / City *" />
-                      <input type="text" placeholder="Postcode / ZIP *" />
-                      <input type="text" placeholder="Phone *" />
-                      <input type="mail" placeholder="Your Mail *" />
-                      <div className="checkoutDetailsFormCheck">
-                        <label>
-                          <input type="checkbox" />
-                          <p>Create An Account?</p>
-                        </label>
-                        <label>
-                          <input type="checkbox" />
-                          <p>Ship to a different Address</p>
-                        </label>
-                      </div>
+                     
+                   
+                      <input type="text" placeholder={translations.streetAddress} />
+                      <input type="text" placeholder={translations.phone} />
+                      
                       <textarea
                         cols={30}
                         rows={8}
-                        placeholder="Order Notes (Optional)"
+                        placeholder={translations.orderNotes}
                       />
                     </form>
                   </div>
@@ -501,10 +459,12 @@ const ShoppingCart = () => {
                             <th>Subtotal</th>
                             <td>${totalPrice.toFixed(2)}</td>
                           </tr>
-                          <tr>
-                            <th>Shipping</th>
-                            <td>$5</td>
-                          </tr>
+                          {shippingOption === "shipping" && (
+  <tr>
+    <th>Shipping</th>
+    <td>$5</td>
+  </tr>
+)}
                           <tr>
                             <th>VAT</th>
                             <td>$11</td>
@@ -513,9 +473,7 @@ const ShoppingCart = () => {
                             <th>Total</th>
                             <td>
                               $
-                              {(totalPrice === 0 ? 0 : totalPrice + 16).toFixed(
-                                2
-                              )}
+                              ${(totalPrice === 0 ? 0 : totalPrice + (shippingOption === "shipping" ? 16 : 11)).toFixed(2)}
                             </td>
                           </tr>
                         </tbody>
@@ -523,83 +481,37 @@ const ShoppingCart = () => {
                     </div>
                   </div>
                   <div className="checkoutPaymentContainer">
+                
                     <label>
                       <input
                         type="radio"
                         name="payment"
-                        value="Direct Bank Transfer"
-                        defaultChecked
+                        value="QPay"
                         onChange={handlePaymentChange}
                       />
                       <div className="checkoutPaymentMethod">
-                        <span>Direct Bank Transfer</span>
-                        <p>
-                          Make your payment directly into our bank account.
-                          Please use your Order ID as the payment reference.Your
-                          order will not be shipped until the funds have cleared
-                          in our account.
-                        </p>
+                        <span>{translations.qpay}</span>
+                       
                       </div>
                     </label>
+                    
                     <label>
                       <input
                         type="radio"
                         name="payment"
-                        value="Check Payments"
+                        value="Захиалгыг авах үед төлбөрөө хий"
                         onChange={handlePaymentChange}
                       />
                       <div className="checkoutPaymentMethod">
-                        <span>Check Payments</span>
-                        <p>
-                          Phasellus sed volutpat orci. Fusce eget lore mauris
-                          vehicula elementum gravida nec dui. Aenean aliquam
-                          varius ipsum, non ultricies tellus sodales eu. Donec
-                          dignissim viverra nunc, ut aliquet magna posuere eget.
-                        </p>
-                      </div>
-                    </label>
-                    <label>
-                      <input
-                        type="radio"
-                        name="payment"
-                        value="Cash on delivery"
-                        onChange={handlePaymentChange}
-                      />
-                      <div className="checkoutPaymentMethod">
-                        <span>Cash on delivery</span>
-                        <p>
-                          Phasellus sed volutpat orci. Fusce eget lore mauris
-                          vehicula elementum gravida nec dui. Aenean aliquam
-                          varius ipsum, non ultricies tellus sodales eu. Donec
-                          dignissim viverra nunc, ut aliquet magna posuere eget.
-                        </p>
-                      </div>
-                    </label>
-                    <label>
-                      <input
-                        type="radio"
-                        name="payment"
-                        value="Paypal"
-                        onChange={handlePaymentChange}
-                      />
-                      <div className="checkoutPaymentMethod">
-                        <span>Paypal</span>
-                        <p>
-                          Phasellus sed volutpat orci. Fusce eget lore mauris
-                          vehicula elementum gravida nec dui. Aenean aliquam
-                          varius ipsum, non ultricies tellus sodales eu. Donec
-                          dignissim viverra nunc, ut aliquet magna posuere eget.
-                        </p>
+                        <span>{translations.cashOnDelivery}</span>
+                       
                       </div>
                     </label>
                     <div className="policyText">
-                      Your personal data will be used to process your order,
-                      support your experience throughout this website, and for
-                      other purposes described in our{" "}
+                      {translations.policy}
                       <Link to="/terms" onClick={scrollToTop}>
-                        Privacy Policy
+                        {translations.privacyPolicy}
                       </Link>
-                      .
                     </div>
                   </div>
                   <button
@@ -609,7 +521,7 @@ const ShoppingCart = () => {
                       setPayments(true);
                     }}
                   >
-                    Place Order
+                   Төлбөрөө баталгаажуулах
                   </button>
                 </div>
               </div>
@@ -673,10 +585,12 @@ const ShoppingCart = () => {
                             <th>Subtotal</th>
                             <td>${totalPrice.toFixed(2)}</td>
                           </tr>
-                          <tr>
-                            <th>Shipping</th>
-                            <td>$5</td>
-                          </tr>
+                          {shippingOption === "shipping" && (
+  <tr>
+    <th>Shipping</th>
+    <td>$5</td>
+  </tr>
+)}
                           <tr>
                             <th>VAT</th>
                             <td>$11</td>
@@ -685,9 +599,7 @@ const ShoppingCart = () => {
                             <th>Total</th>
                             <td>
                               $
-                              {(totalPrice === 0 ? 0 : totalPrice + 16).toFixed(
-                                2
-                              )}
+                              ${(totalPrice === 0 ? 0 : totalPrice + (shippingOption === "shipping" ? 16 : 11)).toFixed(2)}
                             </td>
                           </tr>
                         </tbody>
