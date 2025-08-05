@@ -244,7 +244,6 @@ export const translations = {
   cottonBlendDesc: "Зөөлөн ба тухтай",
   // Cart
   cart: "Сагс",
-  shoppingBag: "Сагс",
   manageItems: "Бүтээгдэхүүнүүдийг бэлдэх",
   checkout: "Тооцоолол",
   reviewOrder: "Захиалгыг шалгах",
@@ -271,8 +270,6 @@ export const translations = {
   orderNotes: "Захиалгын тэмдэглэл",
   yourOrder: "Таны захиалга",
   products: "Бүтээгдэхүүн",
-  subtotal: "Нийт дүн",
-  total: "Нийт",
   // Payment Methods
   bankTransfer: "Банк хөлсөөр",
   checkPayment: "Шалгалаа",
